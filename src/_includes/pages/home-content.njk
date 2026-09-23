@@ -18,7 +18,7 @@
                     {% if lang == "en" %}<span class="lang-en">Server with artificial intelligence tools (LLM/ML/NLP) dedicated to historical research</span>{% endif %}
                 </h2>
 
-                <nav class="mb-6" aria-label="Nawigacja po sekcjach strony">
+                <nav aria-label="Nawigacja po sekcjach strony">
                     <ul class="flex flex-wrap justify-center lg:justify-start gap-2">
                         <li>
                             <a href="#aplikacje" class="inline-flex items-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:border-amber-300 hover:bg-amber-50 hover:text-amber-700 transition">
@@ -66,7 +66,7 @@
             {% if lang == "en" %}<span class="lang-en">Applications</span>{% endif %}
         </h2>
 
-        <p class="text-sm text-gray-500 max-w-3xl mx-auto lg:mx-0 leading-relaxed bg-amber-50 p-4 rounded-lg border border-amber-100 mb-8">
+        <p class="text-sm text-gray-500 leading-relaxed bg-amber-50 p-4 rounded-lg border border-amber-100 mb-8">
             {% if lang == "pl" %}<span class="lang-pl">⚠️ Część aplikacji dostępna jest tylko do użytku wewnętrznego dla osób pracujących lub współpracujących z Instytutem Historii Polskiej Akademii Nauk.</span>{% endif %}
             {% if lang == "en" %}<span class="lang-en">⚠️ Some applications are available only for internal use by staff and collaborators of the Institute of History of the Polish Academy of Sciences.</span>{% endif %}
         </p>
@@ -75,22 +75,35 @@
 
             <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col border border-gray-100 group">
                 <div class="h-48 overflow-hidden bg-gray-100 relative">
-                     <a href="https://ai.ihpan.edu.pl/wikihumsearch">
-                        <img src="/assets/images/cards/wikihumsearch.jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" alt="WikiHumSearch">
-                     </a>
+                    <a href="https://ai.ihpan.edu.pl/mape" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/images/cards/mape_search_engine.png" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" alt="Mape Search Engine">
+                    </a>
                 </div>
                 <div class="p-6 flex-1 flex flex-col">
                     <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-700 transition-colors">
-                        <a href="https://ai.ihpan.edu.pl/wikihumsearch">WikiHumSearch &rarr;</a>
+                        <a href="https://ai.ihpan.edu.pl/mape" target="_blank" rel="noopener noreferrer">MAPE Search Engine &rarr;</a>
                     </h3>
                     <p class="text-gray-600 text-sm mb-4 flex-1">
-                        {% if lang == "pl" %}<span class="lang-pl">Semantyczne (wektorowe) przeszukiwanie danych w bazie wiedzy WikiHum.</span>{% endif %}
-                        {% if lang == "en" %}<span class="lang-en">Semantic (vector) data search in the WikiHum knowledge base.</span>{% endif %}
+                        {% if lang == "pl" %}<span class="lang-pl">MAPE Search Engine - Poznaj listy, które zbudowały kolonialne imperium Portugalii. Zanurz się w historię dzięki wyszukiwarce AI i chatbotowi</span>{% endif %}
+                        {% if lang == "en" %}<span class="lang-en">MAPE Search Engine - Explore the Letters That Built the Colonial Portuguese Empire. Step into history with AI search engine and chatbot</span>{% endif %}
                     </p>
-                    <div class="mt-auto">
-                            {% if lang == "pl" %}<span class="lang-pl"><a href="/pl/narzedzia/wikihumsearch/" class="text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block mb-1">Opis narzędzia</a></span>{% endif %}
-                            {% if lang == "en" %}<span class="lang-en"><a href="/en/tools/wikihumsearch/" class="text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block mb-1">Tool description</a></span>{% endif %}
-                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col border border-gray-100 group">
+                <div class="h-48 overflow-hidden bg-gray-100 relative">
+                    <a href="https://graphs.ihpan.edu.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/images/cards/grafy.png" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" alt="Mape Search Engine">
+                    </a>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-700 transition-colors">
+                        <a href="https://graphs.ihpan.edu.pl/" target="_blank" rel="noopener noreferrer">Grafy &rarr;</a>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-1">
+                        {% if lang == "pl" %}<span class="lang-pl">Aplikacja Grafy - twórz procesy przetwarzania dokumentów historycznych wykorzystujące duże modele językowe</span>{% endif %}
+                        {% if lang == "en" %}<span class="lang-en">Grafy application - create historical document processing processes using large language models</span>{% endif %}
+                    </p>
                 </div>
             </div>
 
@@ -111,6 +124,27 @@
                     <div class="mt-auto">
                         {% if lang == "pl" %}<a href="/pl/narzedzia/sgkp-search/" class="lang-pl text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block">Opis narzędzia</a>{% endif %}
                         {% if lang == "en" %}<a href="/en/tools/sgkp-search/" class="lang-en text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block">Tool description</a>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col border border-gray-100 group">
+                <div class="h-48 overflow-hidden bg-gray-100 relative">
+                     <a href="https://ai.ihpan.edu.pl/wikihumsearch">
+                        <img src="/assets/images/cards/wikihumsearch.jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" alt="WikiHumSearch">
+                     </a>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-700 transition-colors">
+                        <a href="https://ai.ihpan.edu.pl/wikihumsearch">WikiHumSearch &rarr;</a>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-1">
+                        {% if lang == "pl" %}<span class="lang-pl">Semantyczne (wektorowe) przeszukiwanie danych w bazie wiedzy WikiHum.</span>{% endif %}
+                        {% if lang == "en" %}<span class="lang-en">Semantic (vector) data search in the WikiHum knowledge base.</span>{% endif %}
+                    </p>
+                    <div class="mt-auto">
+                            {% if lang == "pl" %}<span class="lang-pl"><a href="/pl/narzedzia/wikihumsearch/" class="text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block mb-1">Opis narzędzia</a></span>{% endif %}
+                            {% if lang == "en" %}<span class="lang-en"><a href="/en/tools/wikihumsearch/" class="text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block mb-1">Tool description</a></span>{% endif %}
                     </div>
                 </div>
             </div>
@@ -155,23 +189,6 @@
                         {% if lang == "pl" %}<a href="/pl/narzedzia/text2ner/" class="lang-pl text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block">Opis narzędzia</a>{% endif %}
                         {% if lang == "en" %}<a href="/en/tools/text2ner/" class="lang-en text-xs font-semibold text-amber-700 hover:text-amber-800 uppercase tracking-wider block">Tool description</a>{% endif %}
                     </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col border border-gray-100 group">
-                <div class="h-48 overflow-hidden bg-gray-100 relative">
-                    <a href="https://ai.ihpan.edu.pl/mape" target="_blank" rel="noopener noreferrer">
-                    <img src="/assets/images/cards/mape_search_engine.png" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" alt="Mape Search Engine">
-                    </a>
-                </div>
-                <div class="p-6 flex-1 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-700 transition-colors">
-                        <a href="https://ai.ihpan.edu.pl/mape" target="_blank" rel="noopener noreferrer">MAPE Search Engine &rarr;</a>
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4 flex-1">
-                        {% if lang == "pl" %}<span class="lang-pl">MAPE Search Engine - Poznaj listy, które zbudowały kolonialne imperium Portugalii. Zanurz się w historię dzięki wyszukiwarce AI i chatbotowi</span>{% endif %}
-                        {% if lang == "en" %}<span class="lang-en">MAPE Search Engine - Explore the Letters That Built the Colonial Portuguese Empire. Step into history with AI search engine and chatbot</span>{% endif %}
-                    </p>
                 </div>
             </div>
 

@@ -1,7 +1,8 @@
 ---
 layout: "layouts/base.njk"
 permalink: "/pl/narzedzia/sgkp-search/index.html"
-title: "SGKP-Search - wyszukiwarka | AI.IHPAN"
+title: "SGKP-Search — wyszukiwanie, konwersacja i przeglądanie | AI.IHPAN"
+description: "SGKP-Search: wyszukiwanie pełnotekstowe, hybrydowe i semantyczne, rozmowa ze źródłami, przeglądanie haseł oraz filtry metadanych Słownika Geograficznego."
 lang: "pl"
 bodyClass: "bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col"
 showNav: true
@@ -16,159 +17,212 @@ alternateUrl: "/en/tools/sgkp-search/"
 alternateLang: "en"
 ---
 <main class="flex-grow py-10 px-4 sm:px-6">
-    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+  <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <article class="p-8 sm:p-12">
+      <header class="mb-8 border-b border-gray-100 pb-8">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">SGKP-Search</h1>
+        <p class="text-lg text-gray-500">Wyszukiwanie, konwersacja i przeglądanie haseł Słownika Geograficznego</p>
+      </header>
 
-      <article class="p-8 sm:p-12">
+      <div class="space-y-6 text-gray-700 leading-relaxed">
+        <p class="bg-amber-50 border border-amber-200 rounded-lg p-6 text-amber-800">
+          <strong>Aplikacja w wersji beta.</strong> Zawiera automatycznie przetworzony tekst SGKP.
+          Treść haseł i metadane mogą zawierać literówki i błędy, które są aktualnie weryfikowane
+          i poprawiane. Odpowiedzi generowane przez modele językowe należy sprawdzać
+          w przywołanych hasłach i skanach stron.
+        </p>
 
-        <header class="mb-8 border-b border-gray-100 pb-8">
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">SGKP-Search</h1>
-          <p class="text-lg text-gray-500">Opis działania wyszukiwarki</p>
-        </header>
+        <p>SGKP-Search udostępnia tekst <em>Słownika geograficznego Królestwa Polskiego i innych krajów
+          słowiańskich</em>, wraz z tomem uzupełniającym, oraz informacje wydobyte z haseł w postaci
+          metadanych. Umożliwia odnajdywanie nazw i tematów, zadawanie pytań o treść słownika
+          oraz przeglądanie i filtrowanie haseł.</p>
 
-        <div class="space-y-6 text-gray-700 leading-relaxed">
+        <p>Aplikacja powstała w Pracowni Historii Cyfrowej Instytutu Historii Polskiej Akademii Nauk
+          w ramach projektu
+          <a href="https://ihpan.edu.pl/badania-naukowe/projekty-badawcze/wykaz-projektow-aktualnie-realizowanych-w-ih-pan/w-ramach-nprh/"
+            target="_blank" rel="noopener noreferrer"
+            class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">Geografia
+            kulturowo-intelektualna dawnych ziem polskich pod zaborami 1865–1918 – cyfrowe vademecum</a>.</p>
 
-          <p>Wyszukiwarka informacji w SGKP - <em>Słowniku Geograficznym Królestwa Polskiego i innych Krajów
-              Słowiańskich</em>
-            (informacje o słowniku na stronie <a
-              href="https://pl.wikipedia.org/wiki/S%C5%82ownik_geograficzny_Kr%C3%B3lestwa_Polskiego" target="_blank" rel="noopener noreferrer"
-              class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">Wikipedii</a>).
-            Wyszukiwarka łączy w sobie dwa podejścia do odnajdywania informacji, co można określić mianem
-            <strong>wyszukiwania hybrydowego</strong>:
+        <p><a href="https://ai.ihpan.edu.pl/sgkpsearch/" target="_blank" rel="noopener noreferrer"
+          class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2 font-semibold">Otwórz
+          aplikację SGKP-Search</a>.</p>
+
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Trzy sposoby korzystania ze słownika</h2>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+          <li><strong>Wyszukiwanie</strong> — odnajdywanie haseł według nazw, słów lub tematyki.</li>
+          <li><strong>Konwersacja</strong> — pytania w języku naturalnym i odpowiedzi opracowywane na podstawie
+            fragmentów słownika, z odsyłaczami do źródeł.</li>
+          <li><strong>Przeglądanie</strong> — uporządkowana lista haseł, którą można zawężać filtrami.</li>
+        </ul>
+        <p>Interfejs jest dostępny po polsku i angielsku. Przełączniki w nagłówku pozwalają zmienić
+          język oraz wybrać jasny lub ciemny motyw. Okno "Pomoc" zawiera podstawowe wskazówki użytkowania.</p>
+
+        <p>
+          <img src="/assets/images/guides/sgkpsearch/wyszukiwanie.png" 
+               alt="Wyszukiwanie" 
+               class=" rounded-lg border border-gray-200">
+        </p>
+
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Wyszukiwanie</h2>
+        <p>Wpisz nazwę, wyrażenie lub pojęcie, a następnie wybierz jeden z trzech trybów:</p>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+          <li><strong>Pełnotekstowe</strong> — wyszukuje słowa w treści haseł. Jest przydatne przy szukaniu
+            nazw miejscowości, osób i konkretnych terminów i pojęć. Wyszukiwanie dopuszcza pewną tolerancję 
+            dopasowania wyrazów, co pozwala odszukać warianty nazwy czy też nazwy z literówkami np. w wyniku OCR.</li>
+          <li><strong>Hybrydowe</strong> — łączy wyszukiwanie słów z podobieństwem znaczeniowym.
+            Suwak "Udział semantyki" określa proporcję obu metod.</li>
+          <li><strong>Semantyczne</strong> — odnajduje fragmenty zbliżone znaczeniowo do zapytania.
+            Warto wpisywać określenia tematyki, np. "wydobywanie surowców" lub "mielenie ziarna".
+            Wyniki mogą dotyczyć szukanego tematu, mimo że nie zawierają dokładnie użytych słów.</li>
+        </ul>
+        <p>W trybie semantycznym można włączyć <strong>"Dodatkową weryfikację wyników"</strong>.
+          Model decyzyjny porównuje wówczas zapytanie ze znalezionym fragmentem hasła i odrzuca wyniki ocenione jako
+          niezwiązane z tematem. Trzeba pamiętać, że taka weryfikacja wydłuża wyszukiwanie i również może popełniać błędy.
           </p>
+        <p>Wyniki są prezentowane według trafności, zwykle po 20 na stronie. Każda karta zawiera nazwę,
+          podstawowe informacje o haśle, fragment tekstu oraz odsyłacz do skanu.
+          Wyszukiwanie semantyczne wskazuje podobieństwo tematyczne; nie gwarantuje pełnego
+          zestawienia wszystkich haseł dotyczących danego zagadnienia.</p>
 
-          <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
-            <li>Wyszukiwanie <strong>pełnotekstowe</strong> (Full-Text): Działa klasycznie, wyszukując wystąpień słów w
-              tekście. Jest to
-              idealne rozwiązanie, gdy użytkownik zna nazwę szukanego obiektu lub terminu historycznego. Silnik radzi
-              sobie
-              z prostymi literówkami (wyszukuje z pewnym 'rozmyciem', tolerancją), co jest kluczowe przy pracy z tekstem
-              przygotowanym za pomocą automatycznego rozpoznawania znaków (OCR).</li>
-            <li>Wyszukiwanie <strong>semantyczne</strong> (Vector Search): pozwala na wyszukiwanie
-              <strong>znaczeń</strong>,
-              a nie tylko
-              ciągów znaków. Dzięki temu użytkownik może wpisać zapytanie np. "miejsca wydobycia kopalin" i otrzymać
-              listę
-              haseł, w których te słowa nie padają wprost, ale ich tekst opisuje kopalnie. Pomaga to też ominąć błędy
-              OCR
-              (drobne błędy w skanowaniu tekstu nie gubią kontekstu semantycznego).</li>
-          </ul>
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Filtry i metadane</h2>
+        <p>W każdej zakładce po lewej stronie dostępny jest zwijany panel filtrów. Można wybrać tom,
+          powiat i zakres haseł: <strong>wszystkie hasła</strong>, <strong>tylko miejscowości</strong>
+          albo <strong>tylko hasła niebędące miejscowościami</strong>.</p>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+          <li>Dla miejscowości dostępne są: przynależność do Królestwa Polskiego, typ punktu
+            osadniczego, gubernia, gmina i parafia katolicka. Gminę i parafię wybiera się z listy
+            po wpisaniu fragmentu nazwy.</li>
+          <li>Dla innych haseł można wybrać typ, np. rzekę, jezioro lub górę.
+            Lista typów powstaje na podstawie metadanych źródłowych.</li>
+          <li>Filtry w sekcji <strong>"Informacje w haśle"</strong> wymagają obecności adnotacji w wybranych
+            kategoriach. Zaznaczenie kilku kategorii oznacza, że hasło musi zawierać informacje
+            o każdej z nich.</li>
+        </ul>
+        <p>Obecnie dostępnych jest 28 kategorii informacji, zebranych w sześć zwijanych grup:</p>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+          <li><strong>Obiekty i dziedzictwo:</strong> obiekty sakralne, dwory i pałace, zabytki,
+            znaleziska archeologiczne, ogrody i architektura krajobrazu, nekropolie.</li>
+          <li><strong>Gospodarka:</strong> zakłady przemysłowe, młyny, rzemiosło, handel, hodowla.</li>
+          <li><strong>Transport i łączność:</strong> poczta i telegraf, stacje kolejowe,
+            urzędy i obiekty celne, żegluga i przeprawy.</li>
+          <li><strong>Urzędy, sądy i wojsko:</strong> urzędy, sądy, wojsko.</li>
+          <li><strong>Edukacja, zdrowie i dobroczynność:</strong> szkoły, opieka zdrowotna,
+            uzdrowiska, dobroczynność, bursy.</li>
+          <li><strong>Kultura i książka:</strong> biblioteki, kolekcjonerstwo, drukarnie,
+            muzealnictwo, księgarnie.</li>
+        </ul>
+        <p><strong>Brak adnotacji nie oznacza braku obiektu.</strong> Filtry korzystają z wydobytych
+          automatycznie metadanych, a nie ze wszystkich wzmianek w treści. Niekompletne lub błędne metadane
+          mogą więc wpływać na wynik.</p>
 
-          <p>Zastosowanym silnikem wyszukiwania jest <strong>Meilisearch</strong> – lekki mechanizm <a
-              href="https://github.com/meilisearch/meilisearch" target="_blank" rel="noopener noreferrer"
-              class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">open
-              source</a>, który obsługuje zarówno
-            szybkie wyszukiwanie tekstowe, jak i wektorowe. Do tworzenia reprezentacji wektorowej tekstu
-            (tzw. osadzeń - embeddings) użyto modelu <strong>OpenAI</strong> (`text-embedding-3-small`). Model ten
-            zamienia
-            fragmenty tekstu ze słownika na ciągi liczb (wektory), które "kodują" znaczenie tego tekstu. Sama aplikacja
-            napisana jest w języku Python z wykorzystaniem frameworka Flask. Tekst SGKP pochodzi z rozpoznania
-            narzędziami
-            OCR (Tesseract) 15 tomów Słownika. Skrypty importujące podzieliły tekst na hasła i pod-hasła (część haseł
-            Słownika to hasła zbiorcze, zawierające opisy wielu miejscowości o tej samej nazwie), aby umożliwić
-            precyzyjne
-            wskazywanie miejsc w tak obszernym dziele.</p>
+        <p>
+          <img src="/assets/images/guides/sgkpsearch/konwersacja.png" 
+               alt="Konwersacja" 
+               class=" rounded-lg border border-gray-200">
+        </p>
 
-          <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Interfejs użytkownika</h2>
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Konwersacja</h2>
+        <p>W tej zakładce można zadawać pytania o informacje zawarte w słowniku.
+          Aplikacja interpretuje pytanie, wyszukuje fragmenty i przygotowuje odpowiedź
+          z numerowanymi odsyłaczami do wykorzystanych haseł. Kolejne pytanie może nawiązywać
+          do wcześniejszej odpowiedzi. Filtry pozwalają ograniczyć zakres źródeł.</p>
+        <p>Na ekranie znajduje się dziesięć przykładowych pytań. Link <strong>"Więcej przykładów"</strong>
+          otwiera pełną listę z podziałem tematycznym i filtrowaniem tekstowym.
+          Wybranie pytania z tego okna wpisuje je do pola Konwersacji, gdzie można je zmienić
+          i ustawić filtry przed wysłaniem.</p>
+        <p>Przykłady pytań:</p>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">  
+          <li>"Co wiadomo o miejscowości Barcząca?"</li>
+          <li>"W których miejscowościach znajdowały się huty szkła?"</li>
+          <li>"Jakie znaleziska archeologiczne znajdowały się w miejscowościach powiatu warszawskiego?"</li>
+          <li>"Ilu robotników pracowało w zakładach Żyrardowa i jakie wyroby tam wytwarzano?"</li>
+          <li>"W ilu hasłach pojawiają się informacje o bibliotekach?"</li>
+        </ul>
 
-          <p>Interfejs dostępny pod adresem <a href="https://ai.ihpan.edu.pl/sgkpsearch" target="_blank" rel="noopener noreferrer"
-              class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">ai.ihpan.edu.pl/sgkpsearch</a>
-            jest minimalistyczny i nastawiony na użyteczność, zawiera:</p>
+        <p>
+          <img src="/assets/images/guides/sgkpsearch/pytanie.png" 
+               alt="Lista przykładowych pytań" 
+               class=" rounded-lg border border-gray-200">
+        </p>
 
-          <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
-            <li><strong>Pole wyszukiwania</strong>: użytkownik wpisuje dowolną frazę, przycisk Szukaj rozpoczyna
-              wyszukiwanie</li>
-            <li><strong>Suwak „Balans Słów Kluczowych i Semantyki”</strong>: określa on proporcję między wyszukiwaniem
-              słów
-              kluczowych (tradycyjne pełnotekstowe),
-              a wyszukiwaniem wektorowym (semantycznym).</li>
-            <li><strong>Listę wyników</strong>: prezentowana w formie listy znalezionych haseł wg rankingu trafności.
-              Każdy
-              wynik zawiera:
-              <ul>
-                <li>Tytuł hasła</li>
-                <li>Informację o tomie i stronie, strona jest jednocześnie linkiem do skanu Słownika na serwerach ICM
-                  (Interdyscyplinarnego Centrum Modelowania Matematycznego i Komputerowego UW).</li>
-                <li>Inne podstawowe informacje o haśle, jeżeli są dostępne. Dane dla haseł SGKP np. nazwy powiatów,
-                  gmin,
-                  parafii, właścicieli, obiektów występujących w danej miejscowości zostały pozyskane poprzez
-                  automatyczne
-                  przetwarzanie treści haseł i wydobywanie informacji przez duże modele językowe (LLM) w ramach
-                  projektu: <a
-                    href="https://ihpan.edu.pl/badania-naukowe/projekty-badawcze/wykaz-projektow-aktualnie-realizowanych-w-ih-pan/w-ramach-nprh/"
-                    target="_blank" rel="noopener noreferrer"
-                    class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">Geografia
-                    kulturowo-intelektualna dawnych ziem polskich pod zaborami 1865–1918 – cyfrowe vademecum</a></li>
-                <li>Fragment tekstu z kontekstem (gdzie znaleziono treść odpowiadającą podanym słowom kluczowym), w
-                  przypadku wyszukiwania pełnotekstowego słowa kluczowe wyróżnione są kolorem żółtym.</li>
-              </ul>
-            </li>
-          </ul>
+        <p>Dwie opcje pozwalają zmienić sposób przygotowania odpowiedzi:</p>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+          <li><strong>Dodatkowa weryfikacja wyników</strong> — model decyzyjny sprawdza związek
+            wyszukanych fragmentów z pytaniem przed przekazaniem ich do modelu przygotowującego
+            odpowiedź.</li>
+          <li><strong>Pogłębiona analiza</strong> — włącza tryb rozumowania modelu podczas
+            przygotowywania końcowej odpowiedzi. Może znacznie wydłużyć oczekiwanie;
+            nie oznacza automatycznie większej liczby źródeł ani pełniejszej odpowiedzi.</li>
+        </ul>
+        <p>Przy pytaniach o liczbę haseł zawierających informacje z obsługiwanej kategorii aplikacja
+          może zliczyć adnotowane hasła z uwzględnieniem filtrów. Taki wynik oznacza
+          <strong>liczbę haseł z metadanymi</strong>, a nie liczbę obiektów, np. bibliotek lub urzędów,
+          ani wszystkich wzmianek o nich w słowniku.</p>
+        <p>W angielskiej wersji językowej aplikacji można zadawać pytania w języku angielskim, pytanie 
+          jest automatycznie tłumaczone na polski na potrzeby wyszukiwania
+          w polskim tekście SGKP, a odpowiedź jest przygotowywana po angielsku.
+          Przetwarzanie jest sygnalizowane komunikatami o kolejnych etapach; przy odpowiedzi
+          wyświetlany jest czas jej przygotowania.</p>
+        <p><strong>"Pobierz PDF"</strong> zapisuje rozmowę wraz ze źródłami.
+          <strong>"Wyczyść rozmowę"</strong> usuwa bieżącą konwersację z karty przeglądarki.</p>
 
-          <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Jak szukać</h2>
+        <p>
+          <img src="/assets/images/guides/sgkpsearch/haslo.png" 
+               alt="Przykład konwersacji" 
+               class=" rounded-lg border border-gray-200">
+        </p>
 
-          <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
-            <li>Wpisz w pole wyszukiwania interesującą Cię frazę np. "mielenie ziarna", "Karaim", "piwo browar", "młyn
-              parowy", "Poniatowski", "Namysłów" - bez cudzysłowów, wersja z cudzysłówami dla wielu słów oznaczałaby
-              wyszukiwanie dokładnej frazy. Można na przykład porównać wyniki wyszukiwania dla: Stanisław August
-              Poniatowski
-              (3 tys. wyników) i "Stanisław August Poniatowski" (6 wyników).</li>
-            <li>Naciśnij "Szukaj" lub klawisz Enter.</li>
-            <li>Wyszukiwarka korzysta z wyszukiwania hybrydowego, łącząc słowa kluczowe z wyszukiwaniem wektorowym
-              (semantycznym), aby dać jak najlepsze wyniki. Ustawienie suwaka "Balans Słów Kluczowych i Semantyki"
-              decyduje
-              o wpływie danego typu wyszukiwania na wynik. Domyślne ustawienie na 0% oznacze wyszukiwanie tylko według
-              słów
-              kluczowych, ustawienie na 100% to eksperymentalne wyszukiwanie tylko wektorowe (semantyczne). Każda inna
-              wartość oznacza
-              wyszukiwane hubrydowe korzystające proporcjonalnie z obu metod.</li>
-            <li>Wyszukiwanie wg słów kluczowych szuka haseł, w których występują wprowadzone w polu wyszukiwania słowa,
-              wyszukiwanie odbywa się z pewną tolerancją tzn. wprowadzając słowo "młyny" otrzymamy wyniki w których
-              znajdowało się zarówno to słowo, jak i "młyn", "młynowi" itp.</li>
-            <li>Wyszukiwanie wektorowe (semantyczne) wyszukuje hasła według znaczenia wprowadzonych wyrazów, dlatego
-              sformułowanie "mielenie ziarna" zwróci hasła zwierające słowa młyn, młyny. To samo sformułowanie
-              wprowadzone
-              przy ustawieniu na wyszukiwanie tylko według słów kluczowych zwróci hasła, w których występuje słowo
-              "mielenie".</li>
-            <li>Wyszukiwanie semantyczne nie odpowiada na pytania (jak chat z modelem językowym), zwraca jedynie wyniki
-              o
-              zbliżonym znaczeniu do zapytania, nie zwraca też kompletnej, precyzyjnej listy informacji.</li>
-          </ul>
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Przeglądanie</h2>
+        <p>Zakładka pokazuje hasła i pod-hasła, po 50 na stronie. Domyślnie wyświetlany jest tom 1.
+          Można wybrać inny tom lub wszystkie tomy, zawęzić listę nazwą albo fragmentem nazwy
+          oraz korzystać z pozostałych filtrów. Lista odświeża się po każdej zmianie filtrów.</p>
+        <p>Dostępne są widoki <strong>listy</strong> i <strong>siatki</strong>.
+          Lista zawiera także początek tekstu hasła, z zachowaniem pogrubień i kursywy,
+          jeżeli tekst ma takie formatowanie. Siatka prezentuje zwarte karty z nazwą,
+          tomem, stroną, typem i linkiem do skanu. Nawigacja znajduje się nad i pod listą,
+          z możliwością przejścia na jej początek lub koniec.</p>
+        <p>Podhasła są oznaczone jako elementy haseł zbiorczych. Numer tomu i strony dla pod-haseł pochodzi
+          z hasła zbiorczego. Dwie części tomu uzupełniającego są prezentowane
+          jako "15 cz. 1" i "15 cz. 2".</p>
 
-          <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Wyniki</h2>
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Treść hasła i skany</h2>
+        <p>Kliknięcie nazwy otwiera okno z pełnym tekstem, metadanymi i odsyłaczem do skanu
+          strony na serwerze ICM Uniwersytetu Warszawskiego. Skany pozwalają porównać
+          automatycznie przetworzoną treść z wydaniem drukowanym.</p>
+        <p>Metadane obejmują m.in. typ, warianty nazwy, informacje administracyjne i lokalizacyjne,
+          parafie, opisane obiekty i instytucje oraz — jeżeli zostały wydobyte — liczbę mieszkańców,
+          liczbę domów i strukturę wyznaniową. Prezentowane są dostępne pola, więc zakres
+          informacji może być różny dla poszczególnych haseł. Dane odnoszą się do okresu
+          opisywanego przez autorów słownika.</p>
 
-          <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
-            <li>Jeżeli wyników jest więcej niż 20, aplikacja wyświetla wyniki z podziałem na strony, u dołu listy
-              wyników
-              znajdują się przyciski do nawigacji między stronami: „Pierwsza”, „Poprzednia”, „Następna”, „Ostatnia”</li>
-            <li>Kliknij na tytuł (label) wyniku, aby zobaczyć więcej szczegółów w osobnym oknie (np. pełny tekst hasła).
-            </li>
-            <li>Dla każdego hasła na liście wyników wyświetlany jest numer tomu i numer strony na której zaczyna się
-              dane
-              hasło w wersji drukowanej, numer strony jest linkiem, który prowadzi do skanu strony na serwerach ICM
-              (Interdyscyplinarnego Centrum Modelowania Matematycznego i Komputerowego UW).</li>
-            <li>Użyj przycisku "Wyczyść", aby zresetować widok.</li>
-          </ul>
-
-          <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Uwagi</h2>
-
-          <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
-            <li>Aplikacja zawiera wstępnie przetworzoną treść SGKP, mogą występować literówki, błędy w podziale treści
-              haseł
-              i inne artefakty przetwarzania</li>
-            <li>Wyszukiwarka jest na wczesnym etapie testów, wyniki mogą być niekompletne lub niedokładne.</li>
-            <li>Maksymalna liczba wyrazów branych pod uwagę w każdym zapytaniu wyszukiwania wynosi 10. Jeśli zapytanie
-              wyszukiwania zawiera więcej niż 10 słów, wszystkie dalsze słowa zostaną zignorowane.</li>
-            <li>Kod źródłowy aplikacji dostępny jest w repozytorium Github <a
-                href="https://github.com/pjaskulski/sgkp_search" target="_blank" rel="noopener noreferrer"
-                class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">(projekt
-                sgkp_search)</a></li>
-            <li>Kod źródłowy skryptów użytych do automatycznej ekstrakcji informacji z haseł SGKP jest dostępny w
-              repozytorium Github <a href="https://github.com/pjaskulski/sgkp_information_extraction" target="_blank" rel="noopener noreferrer"
-                class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">(projekt
-                sgkp_information_extraction)</a></li>
-          </ul>
-
-        </div>
-      </article>
-    </div>
-  </main>
+        <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4">Technologia i ograniczenia</h2>
+        <p>Aplikacja została napisana w języku Python z wykorzystaniem frameworka Flask. Wyszukiwanie tekstowe
+          i wektorowe obsługuje silnik
+          <a href="https://github.com/meilisearch/meilisearch" target="_blank" rel="noopener noreferrer"
+            class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">Meilisearch</a>.
+          Reprezentacje wektorowe tekstu powstają z użyciem modelu <strong>jina-embeddings-v3</strong>.
+          Odpowiedzi i interpretację pytań obsługuje model <strong>Qwen 3.8</strong>, a dodatkową ocenę
+          trafności — odrębny model decyzyjny <strong>jev</strong> (choć aktualnie testujemy też polski model basal-1.5). 
+          </p>
+        <ul class="list-disc list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+          <li>Tekst OCR, podział haseł i automatycznie wydobyte metadane mogą zawierać błędy.</li>
+          <li>Wyszukiwanie semantyczne i odpowiedzi w zakładce Konwersacja mogą być niekompletne.
+            Rozmowa nie jest narzędziem do sporządzania wyczerpujących zestawień wszystkich miejscowości.</li>
+          <li>Przy niedostępności usług lokalnych aplikacja może korzystać z usług zewnętrznych.
+            Aplikacja oznacza odpowiedź przygotowaną w ten sposób.</li>
+          <li>Dodatkowa weryfikacja i pogłębiona analiza wydłużają czas przetwarzania.
+            Serwer może przerwać obsługę zapytania trwającą dłużej niż 5 minut (300 sekund).
+            Wówczas warto ponowić pytanie lub zawęzić jego zakres.</li>
+        </ul>
+        <p>Kod źródłowy:
+          <a href="https://github.com/pjaskulski/sgkp_search" target="_blank" rel="noopener noreferrer"
+            class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">aplikacja SGKP-Search</a>
+          oraz
+          <a href="https://github.com/pjaskulski/sgkp_information_extraction" target="_blank" rel="noopener noreferrer"
+            class="text-amber-700 hover:text-amber-800 underline decoration-amber-200 decoration-2 underline-offset-2">skrypty
+            ekstrakcji informacji</a>.</p>
+      </div>
+    </article>
+  </div>
+</main>

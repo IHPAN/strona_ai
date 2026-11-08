@@ -1,0 +1,117 @@
+---
+layout: "layouts/base.njk"
+permalink: "/pl/narzedzia/wikihummcp/index.html"
+title: "WikiHumMCP - serwer MCP dla WikiHum | AI.IHPAN"
+lang: "pl"
+bodyClass: "wikihummcp-guide bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col"
+showNav: true
+navLabel: "Powrót na stronę główną"
+navWidth: "max-w-4xl"
+navSticky: false
+footerVariant: "standard"
+githubButtons: true
+fontWeights: "300;400;600;700"
+markdownStyles: false
+alternateUrl: "/en/tools/wikihummcp/"
+alternateLang: "en"
+---
+<main class="flex-grow py-10 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+
+            <article class="p-8 sm:p-12">
+
+                <header class="mb-8 border-b border-gray-100 pb-8">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">WikiHumMCP</h1>
+                    <p class="text-lg text-gray-500">Opis konfiguracji dostępu do WikiHumMCP</p>
+                </header>
+
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+
+                    <p>WikiHumMCP umożliwia aplikacjom korzystającym z modeli językowych, takim jak ChatGPT czy Claude, dostęp do danych historycznej bazy wiedzy <a href="https://wikihum.lab.dariah.pl/">WikiHum</a>. Dzięki protokołowi MCP (<i>Model Context Protocol</i>) aplikacja może wyszukiwać elementy bazy, pobierać informacje o nich i wykonywać zapytania potrzebne do udzielenia odpowiedzi.</p>
+                    <p>Po skonfigurowaniu połączenia można zadawać pytania dotyczące danych WikiHum w języku naturalnym. Zakres i dokładność odpowiedzi zależą od zawartości bazy oraz od używanego modelu. Otrzymane informacje należy sprawdzać w odpowiednich rekordach WikiHum i podanych tam źródłach.</p>
+                    <div class="note"><p><strong>Adres serwera:</strong> <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code><br><strong>Uwierzytelnianie:</strong> niewymagane</p></div>
+                    <p>Poniższe instrukcje dotyczą trzech aplikacji. Nazwy i położenie opcji mogą się zmieniać wraz z ich aktualizacjami; dostępność integracji może też zależeć od rodzaju konta i ustawień organizacji.</p>
+                    <nav class="wikihummcp-toc" aria-label="Spis treści">
+                    <p>Konfiguracja w aplikacji:</p>
+                    <ul><li><a href="#jan">Jan</a></li><li><a href="#claude">Claude</a></li><li><a href="#chatgpt">ChatGPT</a></li></ul>
+                    </nav>
+                    <section id="jan">
+
+                    <h2>Jan</h2>
+                    <p><a href="https://jan.ai/">Jan</a> jest aplikacją komputerową dostępną dla systemów Windows, macOS i Linux. Umożliwia korzystanie z modeli lokalnych oraz modeli udostępnianych przez zewnętrznych dostawców. Do pracy z WikiHumMCP potrzebny jest skonfigurowany model obsługujący wywoływanie narzędzi; w zależności od dostawcy może być konieczne włączenie tej funkcji w ustawieniach modelu.</p>
+
+                    <h3>Dodanie serwera</h3>
+                    <ol>
+                        <li>Otwórz ustawienia aplikacji i przejdź do sekcji <strong>MCP Servers</strong> (w niektórych wersjach znajduje się ona w obszarze <strong>Integrations</strong>).</li>
+                        <li>Wybierz <strong>+ Add MCP Server</strong> i wprowadź następujące dane:
+                        <ul><li><strong>Nazwa:</strong> <code>WikiHumMCP</code></li><li><strong>Transport:</strong> <code>HTTP</code></li><li><strong>URL:</strong> <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code></li><li><strong>Timeout:</strong> 30 sekund; w razie potrzeby wartość można zwiększyć.</li></ul>
+                        </li>
+                        <li>Zapisz konfigurację i włącz serwer. Zielony wskaźnik przy jego nazwie oznacza aktywne połączenie.</li>
+                    </ol>
+                    <div class="note"><p>Adres należy wpisać <strong>bez ukośnika na końcu</strong>. Serwer nie wymaga klucza API ani logowania.</p></div>
+                    <p>W ustawieniach można włączyć opcję <strong>Allow All MCP Tool Permissions</strong>, która automatycznie zatwierdza użycie narzędzi MCP we wszystkich rozmowach. Jest to ustawienie opcjonalne; bez niego aplikacja może prosić o zgodę przed użyciem narzędzia.</p>
+
+                    <h3>Sprawdzenie działania</h3>
+                    <p>Rozpocznij nową rozmowę i wybierz model obsługujący narzędzia. Za pomocą ikony narzędzi przy polu wiadomości sprawdź, czy dostępne są funkcje serwera WikiHumMCP. Jeśli chcesz ograniczyć wyszukiwanie do WikiHum, możesz wyłączyć wyszukiwanie w sieci (<strong>Web Search</strong>). Następnie wpisz na przykład:</p>
+                    <p><em>Sprawdź w WikiHum, kim był Jan Kostka, i podaj link do odpowiedniego rekordu.</em></p>
+
+                    <h3>Przykład użycia</h3>
+                    <p>Poniższe zrzuty pokazują, jak Jan korzysta z WikiHumMCP, odpowiadając na pytanie: „Jakich znasz artystów związanych z Krakowem i żyjących w XVI–XVIII wieku?”. Kliknij obraz, aby zobaczyć szczegóły w pełnej rozdzielczości.</p>
+                    <figure class="rounded-lg border border-gray-200 bg-gray-50 p-3 sm:p-4">
+                        <a href="/assets/images/guides/wikihummcp/question.png" class="block" target="_blank" rel="noopener noreferrer" aria-label="Otwórz zrzut pytania i przebiegu kwerendy w pełnej rozdzielczości">
+                            <img src="/assets/images/guides/wikihummcp/question.png" width="1616" height="1168" loading="lazy" decoding="async" class="block w-full h-auto rounded-md" alt="Rozmowa w Jan: pytanie o artystów związanych z Krakowem oraz kolejne etapy kwerendy w WikiHum">
+                        </a>
+                        <figcaption class="mt-2 text-sm text-gray-600">Pytanie i przebieg kwerendy w Jan.</figcaption>
+                    </figure>
+                    <figure class="rounded-lg border border-gray-200 bg-gray-50 p-3 sm:p-4">
+                        <a href="/assets/images/guides/wikihummcp/answer.png" class="block" target="_blank" rel="noopener noreferrer" aria-label="Otwórz zrzut odpowiedzi w pełnej rozdzielczości">
+                            <img src="/assets/images/guides/wikihummcp/answer.png" width="1616" height="1136" loading="lazy" decoding="async" class="block w-full h-auto rounded-md" alt="Rozmowa w Jan: fragment odpowiedzi o artystach związanych z Krakowem, uwaga o metodzie i tabela wyników">
+                        </a>
+                        <figcaption class="mt-2 text-sm text-gray-600">Fragment odpowiedzi z uwagą o metodzie i tabelą wyników.</figcaption>
+                    </figure>
+                    </section>
+                    <section id="claude">
+
+                    <h2>Claude</h2>
+                    <p><a href="https://claude.ai/">Claude</a> umożliwia dodanie zdalnego serwera MCP jako własnego łącznika (<i>custom connector</i>). Poniższa instrukcja dotyczy aplikacji Claude; dostępność i sposób zarządzania łącznikami zależą od rodzaju konta i uprawnień w organizacji. W planie Free można dodać jeden własny łącznik.</p>
+
+                    <h3>Dodanie łącznika</h3>
+                    <ol>
+                        <li>W menu wybierz <strong>Customize → Connectors → + Add → Add custom connector</strong>.</li>
+                        <li>Podaj nazwę <code>WikiHumMCP</code> oraz adres <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code>.</li>
+                        <li>Przejdź przez kolejne kroki konfiguracji. Jeśli aplikacja zapyta o sposób uwierzytelniania, wybierz <strong>No sign in</strong>; serwer nie wymaga logowania.</li>
+                        <li>Dodaj łącznik i sprawdź, czy został połączony. W ustawieniach uprawnień narzędzi (<strong>Tool permissions</strong>) można zdecydować, czy zezwalać na ich użycie każdorazowo, czy stale.</li>
+                    </ol>
+
+                    <h3>Sprawdzenie działania</h3>
+                    <p>W nowej rozmowie włącz łącznik WikiHumMCP za pomocą przycisku <strong>+</strong> i menu <strong>Connectors</strong>, a następnie wpisz:</p>
+                    <p><em>Sprawdź w WikiHum, kim był Jan Kostka, i podaj link do odpowiedniego rekordu.</em></p>
+                    </section>
+                    <section id="chatgpt">
+
+                    <h2>ChatGPT</h2>
+                    <p>W ChatGPT serwer WikiHumMCP można dodać jako własną wtyczkę. Możliwość dodawania i używania własnych serwerów MCP zależy od rodzaju konta, dostępnego interfejsu oraz uprawnień w przestrzeni roboczej. Konfigurację należy przeprowadzić w przeglądarkowej wersji ChatGPT.</p>
+
+                    <h3>Dodanie serwera</h3>
+                    <ol>
+                        <li>Otwórz <strong>Plugins</strong> w bocznym menu, wybierz przycisk <strong>+</strong>, a następnie <strong>Add custom MCP server</strong>.</li>
+                        <li>Wpisz nazwę <code>WikiHumMCP</code> oraz, opcjonalnie, opis. W polu <strong>Server URL</strong> podaj <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code>.</li>
+                        <li>W polu <strong>Authentication</strong> wybierz <strong>No authentication</strong>.</li>
+                        <li>Zapoznaj się z komunikatem dotyczącym połączenia, zaznacz <strong>I understand and want to continue</strong> i wybierz <strong>Create as a plugin</strong>. Sprawdź listę wykrytych narzędzi, a następnie zainstaluj utworzoną wtyczkę.</li>
+                    </ol>
+
+                    <h3>Sprawdzenie działania</h3>
+                    <p>Rozpocznij nową rozmowę w trybie <strong>Work</strong>. W polu wiadomości wpisz <strong>@</strong> i wybierz WikiHumMCP. Następnie zadaj pytanie, na przykład:</p>
+                    <p><em>Sprawdź w WikiHum, kim był Jan Kostka, i podaj link do odpowiedniego rekordu.</em></p>
+                    <p>Jeśli aplikacja poprosi o zgodę na użycie narzędzia, zatwierdź ją, aby umożliwić wyszukanie danych.</p>
+                    </section>
+                    <section>
+
+                    <h2>Problemy z połączeniem</h2>
+                    <p>Jeśli serwer nie działa, sprawdź poprawność adresu, połączenie z internetem oraz to, czy integracja jest włączona w bieżącej rozmowie. W Jan upewnij się ponadto, że adres nie kończy się ukośnikiem, a wybrany model obsługuje narzędzia. Jeżeli opcja dodania łącznika lub wtyczki nie jest widoczna, sprawdź ograniczenia konta albo skontaktuj się z administratorem przestrzeni roboczej.</p>
+                    <p>Aktualne informacje o konfiguracji znajdują się w dokumentacji <a href="https://docs.jan.ai/desktop/integrations/mcp-servers">Jan</a>, <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp">Claude</a> i <a href="https://developers.openai.com/plugins/quickstart">OpenAI</a>.</p>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>

@@ -52,9 +52,9 @@
     </url>
 
     <url>
-        <loc>https://ai.ihpan.edu.pl/en/tools/wikihumsearch/</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="https://ai.ihpan.edu.pl/en/tools/wikihumsearch/" />
-        <xhtml:link rel="alternate" hreflang="pl" href="https://ai.ihpan.edu.pl/pl/narzedzia/wikihumsearch/" />
+        <loc>https://ai.ihpan.edu.pl/en/tools/wikihummcp/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ai.ihpan.edu.pl/en/tools/wikihummcp/" />
+        <xhtml:link rel="alternate" hreflang="pl" href="https://ai.ihpan.edu.pl/pl/narzedzia/wikihummcp/" />
     </url>
 
     <url>
@@ -127,9 +127,9 @@
     </url>
 
     <url>
-        <loc>https://ai.ihpan.edu.pl/pl/narzedzia/wikihumsearch/</loc>
-        <xhtml:link rel="alternate" hreflang="pl" href="https://ai.ihpan.edu.pl/pl/narzedzia/wikihumsearch/" />
-        <xhtml:link rel="alternate" hreflang="en" href="https://ai.ihpan.edu.pl/en/tools/wikihumsearch/" />
+        <loc>https://ai.ihpan.edu.pl/pl/narzedzia/wikihummcp/</loc>
+        <xhtml:link rel="alternate" hreflang="pl" href="https://ai.ihpan.edu.pl/pl/narzedzia/wikihummcp/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://ai.ihpan.edu.pl/en/tools/wikihummcp/" />
     </url>
 
     <url>

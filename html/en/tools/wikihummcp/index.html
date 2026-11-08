@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>WikiHumMCP - access configuration | AI.IHPAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How to configure WikiHumMCP in Jan, Claude, and ChatGPT to access data from the historical WikiHum knowledge base.">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="canonical" href="https://ai.ihpan.edu.pl/en/tools/wikihummcp/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AI.IHPAN.EDU.PL">
+    <meta property="og:title" content="WikiHumMCP - access configuration | AI.IHPAN">
+    <meta property="og:description" content="How to configure WikiHumMCP in Jan, Claude, and ChatGPT to access data from the historical WikiHum knowledge base.">
+    <meta property="og:url" content="https://ai.ihpan.edu.pl/en/tools/wikihummcp/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:image" content="https://ai.ihpan.edu.pl/assets/images/cards/wikihumsearch.jpg">
+    <meta property="og:image:alt" content="WikiHumMCP - access configuration | AI.IHPAN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WikiHumMCP - access configuration | AI.IHPAN">
+    <meta name="twitter:description" content="How to configure WikiHumMCP in Jan, Claude, and ChatGPT to access data from the historical WikiHum knowledge base.">
+    <meta name="twitter:image" content="https://ai.ihpan.edu.pl/assets/images/cards/wikihumsearch.jpg">
+    <meta name="twitter:image:alt" content="WikiHumMCP - access configuration | AI.IHPAN">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <script src="/assets/js/site.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="alternate" hreflang="en" href="https://ai.ihpan.edu.pl/en/tools/wikihummcp/">
+    <link rel="alternate" hreflang="pl" href="https://ai.ihpan.edu.pl/pl/narzedzia/wikihummcp/">
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://ai.ihpan.edu.pl/#organization",
+                "name": "Pracownia Historii Cyfrowej IH PAN",
+                "url": "https://ihpan.edu.pl/"
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://ai.ihpan.edu.pl/#website",
+                "name": "AI.IHPAN.EDU.PL",
+                "url": "https://ai.ihpan.edu.pl",
+                "publisher": { "@id": "https://ai.ihpan.edu.pl/#organization" }
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://ai.ihpan.edu.pl/en/tools/wikihummcp/#webpage",
+                "name": "WikiHumMCP - access configuration | AI.IHPAN",
+                "description": "How to configure WikiHumMCP in Jan, Claude, and ChatGPT to access data from the historical WikiHum knowledge base.",
+                "url": "https://ai.ihpan.edu.pl/en/tools/wikihummcp/",
+                "inLanguage": "en",
+                "image": "https://ai.ihpan.edu.pl/assets/images/cards/wikihumsearch.jpg",
+                "isPartOf": { "@id": "https://ai.ihpan.edu.pl/#website" },
+                "publisher": { "@id": "https://ai.ihpan.edu.pl/#organization" }
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="wikihummcp-guide bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col">
+<a href="#main-content" class="skip-link">
+    Skip to main content
+</a>
+<nav class="w-full bg-white border-b border-gray-200 shadow-sm" aria-label="Page navigation">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/en/" class="flex items-center text-gray-500 hover:text-amber-700 transition font-medium text-sm group">
+            <span class="mr-2 group-hover:-translate-x-1 transition-transform" aria-hidden="true">&larr;</span>
+            Return to the main page
+        </a>
+        <div class="flex items-center gap-3">
+
+            <div class="text-xs font-semibold" aria-label="Language version">
+
+                <a href="/pl/narzedzia/wikihummcp/" lang="pl" class="text-gray-500 hover:text-amber-700">PL</a>
+                <span class="mx-1 text-gray-300">|</span>
+                <span class="text-amber-700" aria-current="page">EN</span>
+
+            </div>
+
+            <div class="hidden sm:block text-sm font-bold text-gray-900 tracking-tight">
+                <span class="text-amber-700">AI</span>.IHPAN.EDU.PL
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div id="main-content" tabindex="-1">
+<main class="flex-grow py-10 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+
+            <article class="p-8 sm:p-12">
+
+                <header class="mb-8 border-b border-gray-100 pb-8">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">WikiHumMCP</h1>
+                    <p class="text-lg text-gray-500">How to configure access to WikiHumMCP</p>
+                </header>
+
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+
+                    <p>WikiHumMCP gives language model applications such as ChatGPT and Claude access to data from the historical <a href="https://wikihum.lab.dariah.pl/">WikiHum</a> knowledge base. Through the Model Context Protocol (MCP), an application can search the database, retrieve information about its records, and make the queries needed to answer a question.</p>
+                    <p>Once the connection is configured, you can ask questions about WikiHum data in natural language. The scope and accuracy of the answers depend on the database contents and the model used. Check the information against the relevant WikiHum records and the sources they cite.</p>
+                    <div class="note"><p><strong>Server address:</strong> <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code><br><strong>Authentication:</strong> not required</p></div>
+                    <p>The instructions below cover three applications. Option names and locations may change with updates; integration availability may also depend on your account type and organization settings.</p>
+                    <nav class="wikihummcp-toc" aria-label="Contents">
+                    <p>Set up the connection in:</p>
+                    <ul><li><a href="#jan">Jan</a></li><li><a href="#claude">Claude</a></li><li><a href="#chatgpt">ChatGPT</a></li></ul>
+                    </nav>
+                    <section id="jan">
+
+                    <h2>Jan</h2>
+                    <p><a href="https://jan.ai/">Jan</a> is a desktop application for Windows, macOS, and Linux. It supports both local models and models provided by external services. To use WikiHumMCP, configure a model that supports tool calling; depending on the provider, you may need to enable this feature in the model settings.</p>
+
+                    <h3>Add the server</h3>
+                    <ol>
+                        <li>Open the application settings and go to <strong>MCP Servers</strong> (in some versions, this is under <strong>Integrations</strong>).</li>
+                        <li>Select <strong>+ Add MCP Server</strong> and enter the following details:
+                        <ul><li><strong>Name:</strong> <code>WikiHumMCP</code></li><li><strong>Transport:</strong> <code>HTTP</code></li><li><strong>URL:</strong> <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code></li><li><strong>Timeout:</strong> 30 seconds; increase it if needed.</li></ul>
+                        </li>
+                        <li>Save the configuration and enable the server. A green indicator next to its name shows that the connection is active.</li>
+                    </ol>
+                    <div class="note"><p>Enter the address <strong>without a trailing slash</strong>. The server requires neither an API key nor a sign-in.</p></div>
+                    <p>You can enable <strong>Allow All MCP Tool Permissions</strong> in the settings to approve MCP tool use automatically in all conversations. This setting is optional; without it, the application may ask for permission before using a tool.</p>
+
+                    <h3>Test the connection</h3>
+                    <p>Start a new conversation and select a model that supports tools. Use the tools icon beside the message field to check that the WikiHumMCP functions are available. To limit the search to WikiHum, you can turn off <strong>Web Search</strong>. Then enter, for example:</p>
+                    <p><em>Search WikiHum for Jan Kostka and provide a link to the relevant record.</em></p>
+
+                    <h3>Example of use</h3>
+                    <p>The screenshots below show Jan using WikiHumMCP to answer the question, “Which artists associated with Kraków lived in the 16th–18th centuries?” The conversation shown is in Polish. Select an image to read it at full resolution.</p>
+                    <figure class="rounded-lg border border-gray-200 bg-gray-50 p-3 sm:p-4">
+                        <a href="/assets/images/guides/wikihummcp/question.png" class="block" target="_blank" rel="noopener noreferrer" aria-label="Open the question and search steps screenshot at full resolution">
+                            <img src="/assets/images/guides/wikihummcp/question.png" width="1616" height="1168" loading="lazy" decoding="async" class="block w-full h-auto rounded-md" alt="Jan conversation in Polish: a question about artists associated with Kraków and the steps of a WikiHum search">
+                        </a>
+                        <figcaption class="mt-2 text-sm text-gray-600">The question and search steps in Jan.</figcaption>
+                    </figure>
+                    <figure class="rounded-lg border border-gray-200 bg-gray-50 p-3 sm:p-4">
+                        <a href="/assets/images/guides/wikihummcp/answer.png" class="block" target="_blank" rel="noopener noreferrer" aria-label="Open the answer screenshot at full resolution">
+                            <img src="/assets/images/guides/wikihummcp/answer.png" width="1616" height="1136" loading="lazy" decoding="async" class="block w-full h-auto rounded-md" alt="Jan conversation in Polish: part of the answer about artists associated with Kraków, with a note on the method and a results table">
+                        </a>
+                        <figcaption class="mt-2 text-sm text-gray-600">Part of the answer, with a note on the method and a results table.</figcaption>
+                    </figure>
+                    </section>
+                    <section id="claude">
+
+                    <h2>Claude</h2>
+                    <p><a href="https://claude.ai/">Claude</a> lets you add a remote MCP server as a custom connector. These instructions apply to the Claude application; connector availability and management depend on the account type and organization permissions. The Free plan allows one custom connector.</p>
+
+                    <h3>Add the connector</h3>
+                    <ol>
+                        <li>In the menu, select <strong>Customize → Connectors → + Add → Add custom connector</strong>.</li>
+                        <li>Enter <code>WikiHumMCP</code> as the name and <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code> as the address.</li>
+                        <li>Complete the remaining setup steps. If asked how to authenticate, select <strong>No sign in</strong>; this server does not require a sign-in.</li>
+                        <li>Add the connector and check that it is connected. Under <strong>Tool permissions</strong>, you can choose whether to allow each use of a tool individually or grant ongoing permission.</li>
+                    </ol>
+
+                    <h3>Test the connection</h3>
+                    <p>In a new conversation, enable the WikiHumMCP connector using the <strong>+</strong> button and the <strong>Connectors</strong> menu. Then enter:</p>
+                    <p><em>Search WikiHum for Jan Kostka and provide a link to the relevant record.</em></p>
+                    </section>
+                    <section id="chatgpt">
+
+                    <h2>ChatGPT</h2>
+                    <p>In ChatGPT, you can add the WikiHumMCP server as a custom plugin. The ability to add and use custom MCP servers depends on your account type, the available interface, and workspace permissions. Configure it in the browser version of ChatGPT.</p>
+
+                    <h3>Add the server</h3>
+                    <ol>
+                        <li>Open <strong>Plugins</strong> in the sidebar, select <strong>+</strong>, and then <strong>Add custom MCP server</strong>.</li>
+                        <li>Enter <code>WikiHumMCP</code> as the name and, optionally, add a description. Enter <code>https://wb-mcp.wmcloud.org/wikihum/mcp</code> in <strong>Server URL</strong>.</li>
+                        <li>Under <strong>Authentication</strong>, select <strong>No authentication</strong>.</li>
+                        <li>Read the connection notice, select <strong>I understand and want to continue</strong>, and choose <strong>Create as a plugin</strong>. Review the detected tools, then install the new plugin.</li>
+                    </ol>
+
+                    <h3>Test the connection</h3>
+                    <p>Start a new conversation in <strong>Work</strong> mode. Type <strong>@</strong> in the message field and select WikiHumMCP. Then ask, for example:</p>
+                    <p><em>Search WikiHum for Jan Kostka and provide a link to the relevant record.</em></p>
+                    <p>If the application asks for permission to use a tool, approve it to allow the data search.</p>
+                    </section>
+                    <section>
+
+                    <h2>Connection problems</h2>
+                    <p>If the server does not work, check the address, your internet connection, and whether the integration is enabled in the current conversation. In Jan, also make sure the address has no trailing slash and that the selected model supports tools. If the option to add a connector or plugin is missing, check your account restrictions or contact your workspace administrator.</p>
+                    <p>For current setup instructions, consult the documentation for <a href="https://docs.jan.ai/desktop/integrations/mcp-servers">Jan</a>, <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp">Claude</a>, and <a href="https://developers.openai.com/plugins/quickstart">OpenAI</a>.</p>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+
+</div>
+
+
+<footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-gray-500">
+        <a href="/en/" class="hover:text-amber-700 transition">
+            Return to the main page of the server.
+        </a>
+        <br>
+        &copy; 2026
+        Digital History Lab, Institute of History, Polish Academy of Sciences
+    </div>
+</footer>
+
+
+</body>
+</html>

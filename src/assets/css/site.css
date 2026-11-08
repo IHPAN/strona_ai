@@ -68,6 +68,99 @@ body.en .lang-pl {
     color: #92400e;
 }
 
+/* WikiHumMCP setup guide */
+.wikihummcp-guide article a {
+    color: #b45309;
+    text-decoration: underline;
+    text-decoration-color: #fde68a;
+    text-underline-offset: 2px;
+}
+
+.wikihummcp-guide article a:hover {
+    color: #92400e;
+}
+
+.wikihummcp-guide article .note {
+    padding: 1rem 1.25rem;
+    border: 1px solid #fcd34d;
+    border-radius: 0.75rem;
+    background: #fffbeb;
+    color: #78350f;
+}
+
+.wikihummcp-guide article .wikihummcp-toc {
+    padding: 1rem 1.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: #f9fafb;
+}
+
+.wikihummcp-guide article .wikihummcp-toc p {
+    margin-bottom: 0.5rem;
+    color: #111827;
+    font-weight: 600;
+}
+
+.wikihummcp-guide article .wikihummcp-toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wikihummcp-guide article section[id] {
+    scroll-margin-top: 1.5rem;
+}
+
+.wikihummcp-guide article section > * + * {
+    margin-top: 1rem;
+}
+
+.wikihummcp-guide article section h2 {
+    color: #111827;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+}
+
+.wikihummcp-guide article section h3 {
+    margin-top: 1.5rem;
+    color: #111827;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+}
+
+.wikihummcp-guide article section ol,
+.wikihummcp-guide article section ul {
+    margin-left: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.wikihummcp-guide article section ol {
+    list-style: decimal;
+}
+
+.wikihummcp-guide article section ul {
+    list-style: disc;
+}
+
+.wikihummcp-guide article section li + li,
+.wikihummcp-guide article section li > ul {
+    margin-top: 0.5rem;
+}
+
+.wikihummcp-guide article code {
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.25rem;
+    background: #f3f4f6;
+    color: #1f2937;
+    font-size: 0.9em;
+    overflow-wrap: anywhere;
+}
+
 .bibliography-tooltip {
     position: fixed;
     z-index: 50;

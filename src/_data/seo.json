@@ -72,12 +72,12 @@
       "description": "Text2NER documentation for recognizing and identifying people, places and other named entities in historical documents and studies.",
       "image": "/assets/images/cards/text2ner.png"
     },
-    "/pl/narzedzia/wikihumsearch/": {
-      "description": "Opis WikiHumSearch, semantycznej wyszukiwarki osób, miejsc i pojęć wykorzystującej osadzenia wektorowe danych WikiHum.",
+    "/pl/narzedzia/wikihummcp/": {
+      "description": "Instrukcja konfiguracji serwera WikiHumMCP w aplikacjach Jan, Claude i ChatGPT oraz korzystania z danych historycznej bazy WikiHum.",
       "image": "/assets/images/cards/wikihumsearch.jpg"
     },
-    "/en/tools/wikihumsearch/": {
-      "description": "WikiHumSearch is a semantic search engine for people, places and concepts based on vector embeddings of WikiHum data.",
+    "/en/tools/wikihummcp/": {
+      "description": "How to configure WikiHumMCP in Jan, Claude, and ChatGPT to access data from the historical WikiHum knowledge base.",
       "image": "/assets/images/cards/wikihumsearch.jpg"
     },
     "/pl/instrukcje/openwebui/": {

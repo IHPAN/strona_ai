@@ -397,6 +397,23 @@
         <div class="space-y-6">
             <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
                 <h3 class="font-semibold text-gray-600 mb-2">
+                    {% if lang == "pl" %}<span class="lang-pl">Listopad 2026</span>{% endif %}
+                    {% if lang == "en" %}<span class="lang-en">Listopad 2026</span>{% endif %}
+                </h3>
+                    {% if lang == "pl" %}<span class="lang-pl">
+                        <a href="/pl/blog/2026-11/" class="text-amber-700 hover:text-amber-800 font-bold flex items-center">
+                            Od pdf-a ze skanami do bazy danych i aplikacji: agenty AI w akcji &rarr;
+                        </a>
+                    </span>{% endif %}
+
+                    {% if lang == "en" %}<span class="lang-en">
+                        <a href="/en/blog/2026-11/" class="text-amber-700 hover:text-amber-800 font-bold flex items-center">
+                            From PDF with Scans to Database and App: AI Agents in Action &rarr;
+                        </a>
+                    </span>{% endif %}
+            </div>
+            <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition">
+                <h3 class="font-semibold text-gray-600 mb-2">
                     {% if lang == "pl" %}<span class="lang-pl">Maj 2026</span>{% endif %}
                     {% if lang == "en" %}<span class="lang-en">May 2026</span>{% endif %}
                 </h3>

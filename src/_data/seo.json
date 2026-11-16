@@ -32,6 +32,11 @@
       "description": "An analysis of the longevity of digital scholarly editions, research infrastructure and the software used in digital humanities projects.",
       "type": "Article"
     },
+    "/pl/blog/2026-11/": {
+      "description": "Od skanów inwentarza Paula Simsona do bazy SQLite i aplikacji webowej: praca historyka z agentem Chronos i konfiguracja Ollama Cloud.",
+      "type": "Article",
+      "image": "/assets/images/blog/chronos_09.png"
+    },
     "/pl/narzedzia/manuscript-lab/": {
       "description": "Opis i podręcznik Manuscript Lab, aplikacji do pracy ze skanami manuskryptów, wariantami HTR, tłumaczeniami i raportami jakości.",
       "image": "/assets/images/cards/manuscriptlab.png"

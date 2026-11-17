@@ -1,0 +1,333 @@
+---
+layout: "layouts/base.njk"
+permalink: "/en/blog/2026-11/index.html"
+title: "From scans to a database: Chronos for historians | AI.IHPAN"
+lang: "en"
+bodyClass: "article-links bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col"
+showNav: true
+navLabel: "Return to the main page"
+navWidth: "max-w-4xl"
+navSticky: false
+footerVariant: "standard"
+githubButtons: true
+fontWeights: "300;400;600;700"
+markdownStyles: false
+socialImageAlt: "Gdańsk Inventory: a searchable application created with Chronos"
+alternateUrl: "/pl/blog/2026-11/"
+alternateLang: "pl"
+---
+<main class="flex-grow py-10 px-4 sm:px-6">
+<div class="max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+<article class="p-8 sm:p-12 min-w-0">
+<header class="mb-8 border-b border-gray-100 pb-8">
+<h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">From a scanned PDF to a database and web application: AI agents in action</h1>
+<p class="text-lg text-gray-500">Processing historical sources with the Chronos AI agent system.</p>
+</header>
+<div class="space-y-6 text-gray-700 leading-relaxed">
+{% raw %}
+
+
+<p><strong class="font-semibold text-gray-900">Case study:</strong> Paul Simson, <em>Danziger Inventar 1531–1591. Mit einem Akten-Anhang</em>, Munich and Leipzig, 1913. The digitised copy used in this project is available on the <a href="https://archive.org/details/danzigerinventar00simsuoft/page/n7/mode/2up" rel="noopener noreferrer" target="_blank">Internet Archive</a>.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="1-project-aims-and-stages">1. Project aims and stages</h2>
+<p>A scanned book makes a source readable, but it does not yet offer a convenient way to bring together all the entries concerning a person, place or period. The aim of this project is to turn the published inventory into a dataset quickly, retaining its connection to the printed volume while enabling questions that go beyond simply browsing a PDF, through advanced searching and filtering.</p>
+<p>The PDF contains scans of a book published in 1913. Its author, <a href="https://pl.wikipedia.org/wiki/Paul_Simson" rel="noopener noreferrer" target="_blank">Paul Simson</a>, was a historian of Gdańsk. Although the PDF includes an OCR layer, this project was intended to demonstrate the capabilities of AI agent systems, so the text was read directly from the page images.</p>
+<p>A historian working with an AI agent system might follow these stages:</p>
+<pre class="block w-full p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-xs sm:text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed"><code class="language-text">PDF containing scans
+  → page images imported from the PDF into Chronos
+  → entries transcribed into JSON
+  → fragments merged and transcriptions checked
+  → dates, place names and Polish translations
+  → index of people and places, linked to entries
+  → SQLite database
+  → application for browsing, filtering and searching
+</code></pre>
+<p>JSON is a text-based data format: a single entry can be an object containing fields such as <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">date</code>, <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text</code> and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">entry_number</code>, while the inventory as a whole can be an array of these objects. SQLite is a lightweight SQL database that stores data in a file and allows entries to be linked to people, places and pages. A web application will make these data available to readers through a browser, with search and filtering facilities.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="2-the-role-of-chronos">2. The role of Chronos</h2>
+<p>Chronos is an AI agent system designed specifically to work with historians: extracting structured datasets from primary sources, adapting to heterogeneous documents and accumulating domain knowledge during the process. It was developed as part of <a href="https://ai-historian.com/" rel="noopener noreferrer" target="_blank">The AI Historian</a>, a project funded by Schmidt Sciences’ AI2050 initiative and carried out by specialists from Schmidt Sciences, the University of Oxford and the University of Adelaide. Technically, Chronos is an extension for the Visual Studio Code development environment, working with the <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">pi</code> agent (<strong>a standalone application that can be used outside Visual Studio Code is also under development</strong>; after checking its current state and testing it, I will describe its installation in a separate blog post). An LLM interprets the instructions and source material, while the agent can organise tasks and use additional tools. In this project, the outputs also include scripts that process files: merging entries, tidying metadata and sending text for translation. The historian guides the processing of the source using natural language—in this case, Polish.</p>
+<p>The developers describe Chronos as a tool for working with historians to produce structured data. Their project website includes an example involving a Frankfurt merchants’ directory from 1812 and a map of the city from 1811, resulting in an interactive map. See the <a href="https://ai-historian.com/research/chronos/" rel="noopener noreferrer" target="_blank">Chronos overview</a>.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: The first page of the inventory on the left, with the conversation and task specification on the right" class="block" href="/assets/images/blog/chronos_01.png"><img alt="The first page of the inventory on the left, with the conversation and task specification on the right" class="mx-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1304" loading="lazy" src="/assets/images/blog/chronos_01.png" width="1684"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 1. The workspace displays the scan alongside the instructions. The page image can be used to check the year, the beginnings of entries and their final reference numbers.</figcaption></figure>
+<p>Alongside Visual Studio Code’s standard file explorer, the Chronos interface includes a viewer for source scans, a panel displaying the data extracted from the source, and a chat panel where the historian communicates with the agent.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="3-preparing-the-project-and-importing-the-pdf">3. Preparing the project and importing the PDF</h2>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="installation-and-the-first-session">Installation and the first session</h3>
+<p>To start using Chronos, install VS Code and Node.js according to the requirements in the current <a href="https://github.com/ai-historian/chronos#prerequisites" rel="noopener noreferrer" target="_blank">Chronos README</a>. In VS Code’s Extensions view, search for <strong class="font-semibold text-gray-900">Chronos — The AI Historian</strong>, published by <strong class="font-semibold text-gray-900">AI-Historian</strong>. On first launch, the extension may offer to install the pi agent and the Chronos package.</p>
+<p>Open the VS Code Command Palette with <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">Ctrl+Shift+P</code> and run:</p>
+<ol class="list-decimal list-inside bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-2">
+<li><strong class="font-semibold text-gray-900">Chronos: Init Workspace</strong> — initialise a workspace in the project folder.</li>
+<li><strong class="font-semibold text-gray-900">Chronos: Import Sources</strong> — select the PDF containing the book scans.</li>
+<li><strong class="font-semibold text-gray-900">Chronos: Start Agent Session</strong> — open the Chronos workspace panel.</li>
+<li>In the <strong class="font-semibold text-gray-900">Source</strong> field of the Chronos panel, select the imported source.</li>
+</ol>
+<p>Importing creates page images. In this project, they are stored in <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">sources/DANZIGER_INVENTAR_1531-1591/png/</code>. It is also worth retaining the original PDF and recording the provenance of the digitised copy. See the <a href="https://github.com/ai-historian/chronos#getting-started" rel="noopener noreferrer" target="_blank">getting-started instructions</a>.</p>
+<p>A standalone application that can be used outside VS Code is also under development. This should make installation and use more accessible to historians: <a href="https://github.com/ai-historian/chronos-desktop" rel="noopener noreferrer" target="_blank">chronos-desktop</a>.</p>
+<details class="rounded-lg border border-gray-200 bg-gray-50" id="understanding-the-project-folder">
+<summary class="cursor-pointer px-5 py-4 text-lg font-semibold text-gray-900 marker:text-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700">Understanding the project folder</summary>
+<div class="space-y-4 border-t border-gray-200 bg-white px-5 py-5">
+<div class="overflow-x-auto rounded-lg border border-gray-200"><table class="w-full text-left text-sm border-collapse">
+<thead>
+<tr>
+<th class="px-4 py-3 bg-gray-50 font-semibold text-gray-900 border-b border-gray-200" scope="col">Location</th>
+<th class="px-4 py-3 bg-gray-50 font-semibold text-gray-900 border-b border-gray-200" scope="col">Role in this project</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">sources/</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Images against which the transcription can be checked.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">data/DANZIGER_INVENTAR_1531-1591/</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Page-level files, batches of entries and successive versions of the dataset.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">memory/</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Notes on the source’s layout and instructions for the LLM.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">sessions/</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Agent session logs.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">skills/</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Instructions for recurring tasks.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">.chronos/</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Chronos settings and supporting data; <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">.env</code> may contain API keys for LLM providers.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">*.py</code> scripts</td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Specific processing operations that can be inspected and run again.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</details>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="preliminary-work">Preliminary work</h3>
+<p>Before asking the agent to process a source, it is worth becoming familiar with the book. The main part of Simson’s volume is an inventory of entries covering 1531–1592, which will be the main focus of processing. The index of people and places is also a valuable resource. Each entry has its own number; the inventory contains more than 10,000 entries in total.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="4-choosing-a-model-and-configuring-ollama-cloud">4. Choosing a model and configuring Ollama Cloud</h2>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="model-providers-and-the-chronos-interface">Model providers and the Chronos interface</h3>
+<p>Chronos is not tied to a particular LLM or AI service provider. Standard connections, for example to Anthropic, OpenAI or Google Gemini, can be configured through <strong class="font-semibold text-gray-900">Log in / Connect AI Provider</strong>. Other providers and compatible API endpoints are added in the <strong class="font-semibold text-gray-900">pi</strong> configuration. To read scans, a model must accept <strong class="font-semibold text-gray-900">images</strong>; to operate as an agent, it must also support tool calls. See <a href="https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/models.md" rel="noopener noreferrer" target="_blank">model configuration in pi</a>.</p>
+<p>The project used Gemini, one of the leading vision models, with good OCR/HTR reading quality. Models accessed through Ollama—<code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">inkling-2-small:cloud</code> and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">kimi-k3.1-pro:cloud</code>—were also used; these support text, images and tools. Cost matters when choosing a model: the strongest commercial models can be expensive in agent workflows, and processing a book of several hundred pages such as Simson’s may cost several hundred Polish złoty or more. Open-source models are less expensive; access may sometimes be available free of charge on academic institutions’ servers, or through an Ollama Cloud subscription.</p>
+<details class="rounded-lg border border-gray-200 bg-gray-50" id="connecting-through-ollama-on-your-own-computer">
+<summary class="cursor-pointer px-5 py-4 text-lg font-semibold text-gray-900 marker:text-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700">Connecting through Ollama on your own computer</summary>
+<div class="space-y-4 border-t border-gray-200 bg-white px-5 py-5">
+<p>After installing and starting <a href="https://docs.ollama.com/quickstart" rel="noopener noreferrer" target="_blank">Ollama</a>, run the following commands in a terminal:</p>
+<pre class="block w-full p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-xs sm:text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed"><code class="language-bash">ollama signin
+ollama list
+ollama run kimi-k3.1-pro:cloud
+ollama run inkling-2-small:cloud
+</code></pre>
+<p>The first command signs you in, the second lists the models, and the third and fourth let you test responses from the specified models. If you are already signed in, you do not need to sign in again. Model availability and limits depend on the current service and your account.</p>
+<p>When using Ollama, the connection follows this route:</p>
+<pre class="block w-full p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-xs sm:text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed"><code class="language-text">Chronos → pi → http://localhost:11434/v1 → Ollama Cloud
+</code></pre>
+<p>Ollama runs on the laptop as an intermediary, but the <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">:cloud</code> model performs its computations in the cloud. The text or images included in the request are therefore sent there.</p>
+</div>
+</details>
+<details class="rounded-lg border border-gray-200 bg-gray-50" id="the-pi-model-configuration-file">
+<summary class="cursor-pointer px-5 py-4 text-lg font-semibold text-gray-900 marker:text-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700">The pi model configuration file</summary>
+<div class="space-y-4 border-t border-gray-200 bg-white px-5 py-5">
+<p>Open <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">~/.pi/agent/models.json</code>. The <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">~</code> symbol denotes the user’s home directory (the path may look different on Windows); in this project’s environment, it is <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">/home/{user}/.pi/agent/models.json</code>. This is a user-level pi configuration shared across that user’s projects. If the file already exists, add the provider to its existing <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">providers</code> section, retaining the other entries.</p>
+<pre class="block w-full p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-xs sm:text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed"><code class="language-json">{
+  "providers": {
+    "ollama": {
+      "baseUrl": "http://localhost:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "compat": {
+        "supportsStore": false,
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false,
+        "maxTokensField": "max_tokens"
+      },
+      "models": [
+        {
+          "id": "kimi-k3.1-pro:cloud",
+          "name": "Kimi K3.1 Pro (Ollama Cloud)",
+          "input": ["text", "image"],
+          "reasoning": true,
+          "contextWindow": 1048576
+        },
+        {
+          "id": "inkling-2-small:cloud",
+          "name": "inkling-2-small (Ollama Cloud)",
+          "input": ["text", "image"],
+          "reasoning": true,
+          "contextWindow": 1048576
+        }
+      ]
+    }
+  }
+}
+</code></pre>
+<p><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">openai-completions</code> specifies the communication protocol, while <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">baseUrl</code> identifies the destination for requests. The <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">compat</code> settings limit the parameters pi sends to the server. The <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">input</code> field declares that the model accepts images; check this capability in the model’s documentation, as not all models are multimodal.</p>
+<p>Reload VS Code using <strong class="font-semibold text-gray-900">Developer: Reload Window</strong>, start a Chronos session and select a model under the <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">ollama</code> provider. For routine analysis, you can use the model identified as <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">inkling-2-small:cloud</code> or one of the Chinese open-source models. First test the chat, then try extracting data from a single page.</p>
+</div>
+</details>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="5-the-first-prompt-and-reading-a-single-page">5. The first prompt and reading a single page</h2>
+<p>After importing the scans from the PDF, the project began with a simple instruction:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Read the inventory text and divide it into entries. The inventory starts at scan page_0029.png and ends at page_0859.png; a supplementary list also runs from page_0859.png to page_0861.png. Entries are marked by dates, the year appears at the beginning of the page, and the entry numbers appear at the end of each entry on the right, following a square bracket. In the supplementary list, the year is given alongside the date. Save the processing results in JSON format. For now, read only the first page.</p>
+</blockquote></div>
+<p>This instruction gives the model information about the structure of the printed page: a date begins an entry, the year has to be read from the heading, and the number at the end helps identify the record’s boundary. Starting with a single page allows these assumptions to be assessed before they are applied to hundreds of scans.</p>
+<p>The agent saved 13 entries in the file for the first page. The following example shows the basic structure of the first record:</p>
+<pre class="block w-full p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-xs sm:text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed"><code class="language-json">{
+  "year": "1531",
+  "date": "Jan. 16.",
+  "text": "Jan. 16. — Danzig an die Markgrafen von Brandenburg und Herzoge von Mecklenburg: fordert Schadenersatz für die in ihren Gebieten überfallenen Danziger. — Miss. 11, 647—649. ![1",
+  "entry_number": "1",
+  "chronos_page": 29
+}
+</code></pre>
+<p><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text</code> retains the German transcription, while the other fields organise the data.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: The first inventory entries in the Chronos data table, with year, date, text and entry number" class="block" href="/assets/images/blog/chronos_02.png"><img alt="The first inventory entries in the Chronos data table, with year, date, text and entry number" class="mx-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1371" loading="lazy" src="/assets/images/blog/chronos_02.png" width="1029"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 2. The results for scan 29 in the Data tab. The p. 29 label provides a way back to the source; it is not the printed page number. The year wrapping across lines in a narrow column does not necessarily indicate an error in the JSON file.</figcaption></figure>
+<p>After the first attempt, <strong class="font-semibold text-gray-900">all 13 records</strong> were compared with the scan: entry boundaries, dates, personal names, place names, archival references and final entry numbers. The Data tab in the Chronos panel makes browsing easier, but it is also worth opening the file itself. A misread number or omitted passage is easier to correct before extending the task.</p>
+<p>An example of a corrective instruction:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Compare all the records with scan 29. List discrepancies and uncertain cases. Retain the original transcription and save corrections in a new version of the file. Do not modernise German spelling or archival references.</p>
+</blockquote></div>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="6-processing-further-pages-and-merging-entries">6. Processing further pages and merging entries</h2>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="entries-spanning-page-boundaries">Entries spanning page boundaries</h3>
+<p>The first entry on a page may continue the text from the previous page. The date appears at the beginning of an entry, while its identifying number appears only at the end. Simply splitting the material by page would therefore create two apparent records.</p>
+<p>In this project, the agent introduced the working flags <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">is_continuation</code> and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">is_incomplete</code>. The <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">merge_entries_*.py</code> scripts, also created by the agent, joined the fragments, while <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">chronos_page</code> could become a list, such as <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">[50, 51]</code>. This allowed the process to recognise that <strong class="font-semibold text-gray-900">a list of pages refers to a single source entry spread across several images, rather than several independent entries.</strong></p>
+<p>An example of an expanded instruction:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Read the specified pages into separate JSON files. Set <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">is_continuation: true</code> if the first fragment continues the previous page, and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">is_incomplete: true</code> if the last entry is cut off. Use <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">null</code> for a missing number or date. Do not guess missing passages. When merging, retain all the scan numbers in <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">chronos_page</code>.</p>
+</blockquote></div>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="page-batches-and-expert-tasks">Page batches and expert tasks</h3>
+<p>Because the first page had been read reasonably accurately, work could proceed to the whole collection. Given the size of the volume, this had to be done in batches: the agent was instructed through the chat to process successive groups of 30–50 or 100 pages, then merge the results into one large JSON file.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: A cohort of experts analysing 21 pages, from scan 30 to scan 50" class="block" href="/assets/images/blog/chronos_03.png"><img alt="A cohort of experts analysing 21 pages, from scan 30 to scan 50" class="mx-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="738" loading="lazy" src="/assets/images/blog/chronos_03.png" width="894"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 3. The “Expert cohort” view shows tasks assigned to individual pages. The number of concurrent model calls may depend on the AI service provider.</figcaption></figure>
+<p>Chronos’s <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">task</code> and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">task_batch</code> tools can analyse individual pages or batches of pages. Expert activity can be followed in the interface. For tasks requiring confirmation, check the proposed scope before approving them in the chat. Once processing was complete, the results were merged using a script. See <a href="https://github.com/ai-historian/chronos/blob/master/DOCS.md#tools" rel="noopener noreferrer" target="_blank">Chronos tools</a>.</p>
+<p>Errors could occur during processing, for example in communication with the LLM. The agent was nevertheless able to notice errors and gaps and suggest reprocessing or scripts to repair the problems.</p>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="project-memory">Project memory</h3>
+<p>Findings about the source’s layout and other important information can be saved in notes for the agent. When resuming work, you can ask it to read the notes and check the output files. These notes make it easier to return to the project. For example:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Save the rules for identifying entries, the method for merging continuations and the last verified range in the project memory. Distinguish completed operations from planned ones. Identify the input and output files and any unresolved issues.</p>
+</blockquote></div>
+<p>The agent often suggests saving information relevant to processing that has emerged during its conversation with the historian.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="7-completing-the-inventory-transcription">7. Completing the inventory transcription</h2>
+<p>The complete <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">Danziger_Inventar_1531_1591.json</code> file contains more than <strong class="font-semibold text-gray-900">10,400 records</strong>. However, these do not yet include all the data a historian might need. An additional prompt therefore requested place fields, since some entries were associated with a particular location, and an ISO-format date field to facilitate sorting and filtering in the database. Reviewing the data in the <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">Data</code> tab also revealed a need for certain corrections.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: Further work on inventory scans, with Ollama and Gemini experts" class="block" href="/assets/images/blog/chronos_04.png"><img alt="Further work on inventory scans, with Ollama and Gemini experts" class="mx-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1123" loading="lazy" src="/assets/images/blog/chronos_04.png" width="1674"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 4. Scan 838 shows printed page 810, while the panel also contains tasks for later scans.</figcaption></figure>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="separating-dates-from-places">Separating dates from places</h3>
+<p>After extraction, place names were found in the <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">date</code> field, for example in <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">Jan. 27, Gottorp.</code>. The agent was asked to move them to a separate <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">place</code> field without removing the information from <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text</code>.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: A request to separate place names from dates and the agent’s report on creating the place field" class="block mx-auto max-w-xl" href="/assets/images/blog/chronos_05.png"><img alt="A request to separate place names from dates and the agent’s report on creating the place field" class="mx-auto w-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1043" loading="lazy" src="/assets/images/blog/chronos_05.png" width="864"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 5. An example of refining the data structure iteratively.</figcaption></figure>
+<p>Entry no. 3 includes <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">date: "Jan. 27."</code>, <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">place: "Gottorp"</code> and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">iso_date: "1531-01-27"</code>. <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">place</code> was interpreted as the location associated with the dating or issuing of the document. It is not a list of all the places mentioned in the entry: Gdańsk appearing as the sender or Słupsk as the addressee does not automatically justify filling this field. Such relationships require a separate data model.</p>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="iso-dates-without-losing-historical-information">ISO dates without losing historical information</h3>
+<p>A value such as <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">1531-01-16</code> makes sorting and filtering easier. However, not all dates in the source are that precise. The inventory includes months without a day, date ranges and expressions such as “before 23 June”. It is worth retaining both the original wording and its interpretation.</p>
+<p>The script prepared by the Chronos agent used the first day of the month or year for incomplete dates. This gave the record a sortable value, but it introduces the risk of <strong class="font-semibold text-gray-900">false precision</strong>. For example, the source’s <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">[Juli.]</code> was stored as <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">1531-07-01</code>. This must not be treated as a statement that the document was produced on 1 July.</p>
+<p>An example instruction for the agent:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Check <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">iso_date</code> against the source’s dating. For incomplete or approximate dates, date ranges and double dates, propose fields that preserve this information. Do not replace a missing day with an asserted date on the first day of the month. Prepare a report of the proposed changes before recalculating the whole dataset.</p>
+</blockquote></div>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="polish-place-names">Polish place names</h3>
+<p>The additional <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">place_pl</code> field is intended to facilitate searching in Polish, while <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">place</code> retains the form read from the printed text. Assigning a Polish name is itself a proposed identification that requires checking, especially for ambiguous names and historical variants. Here the model relied on its own knowledge, although external services could also be used.</p>
+<p>An example prompt:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Compile a list of unique <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">place</code> values. Separate probable place names from dates and text fragments that have been extracted incorrectly. Suggest Polish equivalents; for ambiguous cases, give your reasoning and leave them marked for review. Retain the original name.</p>
+</blockquote></div>
+<p>Not every place has a distinct Polish name. Nor can every historical name be identified with a present-day settlement without further investigation. The future database may also need name variants and relationships between them.</p>
+<h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3" id="translation-into-text_pl">Translation into <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text_pl</code></h3>
+<p>Another task the Chronos agent could carry out using the language model was translating the <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text</code> field into Polish. <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text</code> remains the basis for comparison with the German printed source, while <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text_pl</code> helps with reading and searching.</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Add a Polish translation in <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text_pl</code>, retaining <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">text</code>. Do not omit dating, uncertainty markers, numbers or archival references. Do not expand uncertain abbreviations without marking the expansion. First translate a sample of 25 entries and identify cases that require a decision on terminology.</p>
+</blockquote></div>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: A sample of Polish translations and the decision to process smaller batches" class="block mx-auto max-w-xl" href="/assets/images/blog/chronos_06.png"><img alt="A sample of Polish translations and the decision to process smaller batches" class="mx-auto w-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1123" loading="lazy" src="/assets/images/blog/chronos_06.png" width="864"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 6. Moving from a sample to a plan for batch translation. The agent suggests different translation approaches using tools of varying quality.</figcaption></figure>
+<p>Translation scripts were created for Gemini and inkling-2-small, although most of the material was translated by the smaller open-source model because of cost. The script processed batches of 25 entries sequentially, so as not to overload the model with too much text at once, and saved results so that work could resume after a failure. Once all the batches had been translated, the results were merged with the main JSON file. The translation quality was satisfactory for browsing and searching for information, but it certainly requires expert revision.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="8-the-index-of-people-and-places">8. The index of people and places</h2>
+<p>The index is a separate part of the book: it contains headwords, name variants, subentries and cross-references. Reading it can help link scattered mentions, but it does not replace the historian’s identification of people and places.</p>
+<p>Work on the index can begin by asking the agent to process a representative sample covering a person, a place, a headword with variants and a long list of references:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Read a sample of the index (page_1077.png). Preserve column order, the hierarchy of headwords and the original reference strings. Separate the headword, name variants, description, subentries and references to other headwords. Distinguish references to entries from references to pages. Do not merge people or places solely because their names are similar. Save the result as JSON and compare it with the scan.</p>
+</blockquote></div>
+<p>The following <strong class="font-semibold text-gray-900">fictional example structure</strong> illustrates a possible format; it is not a transcription of an actual headword in Simson’s book:</p>
+<pre class="block w-full p-4 bg-gray-50 border border-gray-200 rounded-lg font-mono text-xs sm:text-sm text-gray-700 whitespace-pre-wrap break-words leading-relaxed"><code class="language-json">{
+  "index_id": "idx-demo-001",
+  "label_original": "Example place",
+  "entity_type": "place",
+  "name_variants": [],
+  "references_raw": "12–14. S. 841.",
+  "references": [
+    {"kind": "entry", "number_raw": "12–14", "numbers": ["12", "13", "14"]},
+    {"kind": "printed_page", "number_raw": "841"}
+  ],
+  "see_also": [],
+  "parent_index_id": null,
+  "review_status": "unreviewed"
+}
+</code></pre>
+<p>After assessing the transcription quality, you can refine the prompt and instruct the agent in the chat to process the entire index and save it to indeks.json.</p>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="9-the-next-stage-an-sqlite-database">9. The next stage: an SQLite database</h2>
+<p>The JSON files are temporary working files; the historian’s aim is to obtain a database. SQLite is a convenient format that can readily be used by a web application. The first task for Chronos was to propose a structure and demonstrate importing a small sample.</p>
+<p>The data model proposed by the agent:</p>
+<div class="overflow-x-auto rounded-lg border border-gray-200"><table class="w-full text-left text-sm border-collapse">
+<thead>
+<tr>
+<th class="px-4 py-3 bg-gray-50 font-semibold text-gray-900 border-b border-gray-200" scope="col">Table</th>
+<th class="px-4 py-3 bg-gray-50 font-semibold text-gray-900 border-b border-gray-200" scope="col">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">entries</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">An internal entry ID, the number in the printed source, German text, translation, dating and review status.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">pages</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">The scan number, printed page number, image path and section of the volume.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">entry_pages</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Links between entries and pages, including entries spanning more than one page.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">index_items</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Headwords, subentries, original wording and the structure of the index.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">index_references</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Original reference strings, their types and their matching status against entries or pages.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">entities</code> and <code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">entity_names</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Verified people and places and their name variants.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">entry_entities</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">Links between an entry and a person or place, with roles such as addressee, sender, place of issue or mention.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 align-top border-b border-gray-100"><code class="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded font-mono text-sm break-words">processing_runs</code></td>
+<td class="px-4 py-3 align-top border-b border-gray-100">The operation date, model, prompt or prompt ID, and the version of the input file.</td>
+</tr>
+</tbody>
+</table></div>
+<p>An example instruction:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Propose an SQLite database for the entries, pages and index. Show the schema and import a sample of 20 records, including an entry spanning more than one page and an incomplete date. Retain the original numbers and texts. The import must report errors, inconsistent references and skipped records. Running it again must not create duplicates. Do not replace an existing database without retaining a version of it.</p>
+</blockquote></div>
+<p>The final instruction should explicitly require full-text search support using FTS5.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: The agent’s report on completing database preparation" class="block mx-auto max-w-xl" href="/assets/images/blog/chronos_07.png"><img alt="The agent’s report on completing database preparation" class="mx-auto w-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="733" loading="lazy" src="/assets/images/blog/chronos_07.png" width="823"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 7. The agent reports that database preparation is complete.</figcaption></figure>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="10-an-application-for-browsing-the-data">10. An application for browsing the data</h2>
+<p>The ultimate aim of the Chronos agent’s work—and the historian’s main expectation—was a web application that would make the data easy to browse, search and filter. The first step is to ask the agent to prepare a design:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Prepare a design for a fairly simple web application using Python and Flask. It should have two main tabs: an inventory with a searchable and filterable list of entries, and an index that can also be searched and filtered. Entry numbers associated with an index item should be clickable and display the corresponding entries. An additional feature could link each entry to its PNG scan, with a link or button to display it on request. Save the application design in a Markdown file in the project directory.</p>
+</blockquote></div>
+<p>You can also point the agent towards existing applications as examples of style and functionality. Here, the <a href="https://ai.ihpan.edu.pl/parlamentarzysci/" rel="noopener noreferrer" target="_blank">database of Lithuanian parliamentarians</a> was used as a reference.</p>
+<p>After creating the application, the agent can run it locally and provide a link in the chat:</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: The agent’s report on completing the application and running it locally" class="block mx-auto max-w-xl" href="/assets/images/blog/chronos_08.png"><img alt="The agent’s report on completing the application and running it locally" class="mx-auto w-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="878" loading="lazy" src="/assets/images/blog/chronos_08.png" width="823"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 8. The agent reports that application development is complete and that it is running locally.</figcaption></figure>
+<h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" id="11-documentation">11. Documentation</h2>
+<p>The final instruction for the project might be:</p>
+<div class="bg-gray-50 p-6 rounded-lg border border-gray-200 space-y-3"><span class="text-xs font-bold text-amber-700 uppercase tracking-wider">Example prompt</span><blockquote class="text-sm leading-relaxed text-gray-700 space-y-3">
+<p>Save a report on the current state of the project. Identify the last verified version of the data, completed operations, known errors and the next step. Do not describe the dataset as complete unless the source ranges and numbering have been verified. Update the project memory, maintaining the distinction between results, hypotheses and plans. Prepare documentation for the database and web application to help the IT department deploy it on a server. Also specify which files I need to send so that the IT department receives a complete set of files and data. Save the documentation in Markdown files.</p>
+</blockquote></div>
+<p>The finished application uses a database created by processing the scans with the Chronos agent.</p>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: The application in use" class="block" href="/assets/images/blog/chronos_09.png"><img alt="The application in use" class="mx-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1334" loading="lazy" src="/assets/images/blog/chronos_09.png" width="2236"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 9. The application in use.</figcaption></figure>
+<figure class="my-8 space-y-3"><a aria-label="Open full-size image: The application in use, showing a scan preview" class="block" href="/assets/images/blog/chronos_10.png"><img alt="The application in use, showing a scan preview" class="mx-auto max-w-full h-auto rounded-lg border border-gray-200 shadow-sm" decoding="async" height="1334" loading="lazy" src="/assets/images/blog/chronos_10.png" width="2236"/></a><figcaption class="text-sm text-gray-500 leading-relaxed italic">Figure 10. The application in use, showing a scan preview.</figcaption></figure>
+<p>The entire process, from downloading the PDF to running the database application for the first time, took one working day, including time spent learning the system and writing this blog post. The system is not error-free, and working in a development environment may present an obstacle for some historians. As noted earlier, however, the developers are working on a standalone desktop version. This example involved scans of a printed book, but manuscripts can be processed in a similar way if the chosen model can read the relevant handwriting. The approach and its potential for historical research are certainly interesting and promising. Further examples can be found on the <a href="https://ai-historian.com/#blog" rel="noopener noreferrer" target="_blank">developers’ blog</a>.</p>
+<p>The source code of the application generated during this work is available in the <a href="https://github.com/pjaskulski/danzinger-app" rel="noopener noreferrer" target="_blank">GitHub repository</a>.</p>
+
+{% endraw %}
+            </div>
+</article>
+</div>
+</main>

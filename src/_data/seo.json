@@ -37,6 +37,11 @@
       "type": "Article",
       "image": "/assets/images/blog/chronos_09.png"
     },
+    "/en/blog/2026-11/": {
+      "description": "From scans of Paul Simson’s inventory to an SQLite database and web application: a historian’s workflow with Chronos, including Ollama Cloud setup.",
+      "type": "Article",
+      "image": "/assets/images/blog/chronos_09.png"
+    },
     "/pl/narzedzia/manuscript-lab/": {
       "description": "Opis i podręcznik Manuscript Lab, aplikacji do pracy ze skanami manuskryptów, wariantami HTR, tłumaczeniami i raportami jakości.",
       "image": "/assets/images/cards/manuscriptlab.png"
